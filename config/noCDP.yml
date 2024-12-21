@@ -1,0 +1,49 @@
+EXP_NAME: noCDP
+CKPT_NAME: noCDP
+ckpt_epnum: best  #only for testing
+# GPU: [0, 1]
+GPU: "0, 1"
+NUM_WORKERS: 8
+#SUB_NUM: 100
+
+DATASET: sen12mscrts
+
+TRAIN_ROOT: ../../../Data/CR-sentinel/SEN12MSCR-TS/train
+VAL_ROOT: ../../../Data/CR-sentinel/SEN12MSCR-TS/train
+TEST_ROOT: ../../../Data/CR-sentinel/SEN12MSCR-TS/test
+
+TRAIN_IMPORT_PATH: data/precomputed/sen12mscrts/splits/generic_3_train_all_s2cloudless_mask.npy
+VAL_IMPORT_PATH: data/precomputed/sen12mscrts/splits/generic_3_val_all_s2cloudless_mask.npy
+TEST_IMPORT_PATH: data/precomputed/sen12mscrts/splits/generic_3_test_all_s2cloudless_mask.npy
+
+TRAIN_PAIRS_PATH: data/precomputed/sen12mscrts/pairs/train.csv
+VAL_PAIRS_PATH: data/precomputed/sen12mscrts/pairs/val.csv
+TEST_PAIRS_PATH: data/precomputed/sen12mscrts/pairs/test.csv
+
+PRETRAINED_VQVAE_PATH: checkpoints/pretrain_sar_enc_n2n/49.pth
+
+BATCH_SIZE: 4                 # batch size
+EPOCH: 30                     # epoch nums for training
+
+G_LR: 0.0001
+# SARENC_LR: 0.00001
+BETA1: 0.0                    # adam optimizer beta1
+BETA2: 0.9                    # adam optimizer beta2
+TFUSE: LTAE
+with_CDP: False
+useCA: True
+P_LOSS: True
+
+G1_CONTENT_LOSS_WEIGHT: 1
+G2_L1_LOSS_WEIGHT: 2
+G2_STYLE_LOSS_WEIGHT: 250
+
+INPUT_T: 3
+USE_SAR: True
+MIN_COV: 0.0
+MAX_COV: 0.95
+
+LOG_ITER: 1                   # freq to log batch_loss ;batch
+SAVE_FREQ: 1                  # freq to save model ;epoch
+VAL_FREQ: 1
+SAVE_MODEL_DIR: checkpoints

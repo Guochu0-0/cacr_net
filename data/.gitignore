@@ -1,0 +1,3 @@
+*.pth
+precomputed/
+__pycache__/
